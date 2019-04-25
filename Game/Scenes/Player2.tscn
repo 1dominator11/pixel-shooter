@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Player2.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/BluePlayer.png" type="Texture" id=2]
+
+[node name="Player2" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+health = 2
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="trigger_collision" type="CollisionPolygon2D" parent="Area2D" index="0" groups=[
+"collide",
+]]
+
+build_mode = 0
+polygon = PoolVector2Array( -4.18339, -12.499, 4.14697, -12.5741, 6.9988, -11.2983, 9.0251, -10.2476, 14.0909, -5.25688, 15.1415, -3.23057, 16.3048, -0.22864, 16.1922, 8.28934, 12.2522, 12.2294, 10.0758, 12.417, 8.61234, 11.0661, 6.58603, 7.12609, -0.0557365, 0.596891, -6.69751, 7.23866, -8.61124, 11.2162, -9.84954, 12.4545, -12.0635, 12.3044, -16.4538, 8.17677, -16.4538, -0.00349617, -15.4031, -3.19305, -14.3051, -5.2985, -9.40458, -10.148, -6.92266, -11.4859 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+
+[node name="muzzle" type="Position2D" parent="Sprite" index="0"]
+
+position = Vector2( 0, -25 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+
+build_mode = 0
+polygon = PoolVector2Array( -4, -12, 4, -12, 7, -11, 9, -10, 14, -5, 15, -3, 16, 0, 16, 8, 12, 12, 10, 12, 9, 11, 7, 7, 0, 0, -7, 7, -9, 11, -10, 12, -12, 12, -16, 8, -16, 0, -15, -3, -14, -5, -9, -10, -7, -11 )
+
+[node name="bullet_container" type="Node" parent="." index="3"]
+
+[node name="gun_timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+

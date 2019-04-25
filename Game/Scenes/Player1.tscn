@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Player1.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/RedPlayer.png" type="Texture" id=2]
+
+[node name="Player1" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+health = 2
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D" index="0" groups=[
+"collide",
+]]
+
+build_mode = 0
+polygon = PoolVector2Array( -3.98748, -12.4005, 4.03937, -12.4281, 7.2115, -11.2972, 9.28028, -10.2766, 14.3281, -5.146, 15.4039, -3.04964, 16.452, 0.0949049, 16.2865, 8.17693, 12.149, 12.3421, 9.83195, 12.3421, 8.5631, 11.1284, 6.74258, 7.18391, -0.0154305, 0.343158, -6.77344, 7.10116, -8.8698, 11.156, -10.0283, 12.2317, -12.1247, 12.2593, -16.2346, 8.14934, -16.3174, -0.263683, -15.2692, -3.27031, -14.1934, -5.25633, -9.0353, -10.2766, -6.96652, -11.2696 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="muzzle" type="Position2D" parent="Sprite" index="0"]
+
+position = Vector2( 0, -25 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+
+build_mode = 0
+polygon = PoolVector2Array( -4, -12, 4, -12, 7, -11, 9, -10, 14, -5, 15, -3, 16, 0, 16, 8, 12, 12, 10, 12, 9, 11, 7, 7, 0, 0, -7, 7, -9, 11, -10, 12, -12, 12, -16, 8, -16, 0, -15, -3, -14, -5, -9, -10, -7, -11 )
+
+[node name="bullet_container" type="Node" parent="." index="3"]
+
+[node name="gun_timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+

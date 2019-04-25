@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Player1.gd" type="Script" id=1]
+[ext_resource path="res://Player1/RedPlayer.png" type="Texture" id=2]
+
+[node name="Player1" type="KinematicBody2D" index="0"]
+
+position = Vector2( 2, 0 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "collision" ]
+speed = 2
+boost = 5
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( -1, 0 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( 9, -12, 8, -11, 7, -9, 6, -7, -1, 0, -8, -7, -9, -9, -10, -11, -11, -12, -13, -12, -17, -8, -17, 0, -16, 3, -15, 5, -10, 10, -8, 11, -5, 12, 3, 12, 6, 11, 8, 10, 13, 5, 14, 3, 15, 0, 15, -8, 11, -12, 9, -12 )
+
+
